@@ -1,0 +1,987 @@
+/* Root Variables - Color Scheme and Global Settings */
+:root {
+    /* Main colors */
+    --bg-color: #f2e8c6;
+    --secondary-bg-color: #eae1c1;
+    --text-color: #000000;
+    --secondary-text-color: #982b1c;
+    --header-bg-color: #800000;
+    --card-bg-color: #dad4b5;
+    --button-bg-color: #800000;
+    --button-text-color: #ffffff;
+    --footer-bg-color: #4e342e;
+    --footer-text-color: #e4c59e;
+    
+    /* Animation Durations */
+    --trans-duration: 0.3s;
+
+    /* Interactive States */
+    --button-hover-bg: #9b0000;
+    --link-hover-color: #c13828;
+    --card-hover-shadow: rgba(152, 43, 28, 0.2);
+
+    /* Component-specific colors */
+    --student-life-shadow: rgba(152, 43, 28, 0.15);
+    --student-life-hover-shadow: rgba(152, 43, 28, 0.25);
+    --student-life-border: rgba(152, 43, 28, 0.3);
+}
+
+/* Font Configurations */
+@font-face {
+    font-display: swap;
+    font-family: 'Cairo';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/cairo-v28-latin-regular.woff2') format('woff2');
+}
+
+/* Base Styles */
+* {
+    font-family: system-ui, -apple-system, sans-serif, 'cairo';
+}
+
+/* Global Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes buildingGrow {
+    0% { transform: scaleY(0); }
+    100% { transform: scaleY(1); }
+}
+
+/* Base Element Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all var(--trans-duration) ease-in-out;
+    overflow-x: hidden;
+}
+
+/* Hero Section Styles */
+.hero-svg {
+    width: 50px;
+    height: 50px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all 0.3s ease;
+    color: var(--secondary-text-color);
+    animation: buildingGrow 1s ease-out;
+    transform-origin: bottom;
+}
+
+.hero-svg:hover {
+    transform: scale(1.1);
+}
+
+.hero-heading {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+}
+
+.hero-paragraph {
+    line-height: 1.8;
+}
+
+/* Button Styles */
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    border: 1px solid var(--button-hover-bg);
+    background: var(--button-hover-bg);
+    transition-duration: var(--trans-duration);
+    color: #ffffff;
+}
+
+/* Link Styles */
+a {
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    transition: all var(--trans-duration) ease-in-out;
+    position: relative;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+/* Navigation Styles */
+nav a {
+    color: var(--button-text-color);
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--footer-text-color);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--button-bg-color);
+    transition: width var(--trans-duration) ease-in-out;
+}
+
+nav a:hover::after {
+    width: 100%;
+    will-change: transform;
+}
+
+/* Card and Hover Effects */
+.hover-lift {
+    transition: all var(--trans-duration) ease-in-out;
+    border: 2px solid transparent;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--card-hover-shadow);
+    border-color: var(--secondary-text-color);
+}
+
+/* Stat Cards */
+.stat-card {
+    background: var(--card-bg-color);
+    box-shadow: var(--card-hover-shadow);
+    transition: all var(--trans-duration) ease-in-out;
+    border: 2px solid transparent;
+    overflow: hidden;
+    position: relative;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--card-bg-color);
+    opacity: 0;
+    transition: opacity var(--trans-duration) ease-in-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--secondary-text-color);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.animate-gradient:hover {
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Global Interactive Elements */
+a, button {
+    transition: all var(--trans-duration) ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-text-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--button-hover-bg);
+}
+
+/* Student Life Section Styles */
+.student-life-section {
+    background: var(--bg-color);
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.student-life-card {
+    background: var(--card-bg-color);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: all var(--trans-duration) cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    box-shadow: 0 4px 6px var(--student-life-shadow);
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(0);
+    will-change: transform;
+    z-index: 1;
+}
+
+/* Student Life Card Effects */
+.student-life-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, var(--card-bg-color), var(--bg-color));
+    opacity: 0;
+    transition: opacity var(--trans-duration) ease-in-out;
+    border-radius: 0.5rem;
+    z-index: -1;
+}
+
+.student-life-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--student-life-border);
+    box-shadow: 0 8px 20px var(--student-life-hover-shadow);
+}
+
+.student-life-card:hover::after {
+    opacity: 0.1;
+}
+
+/* Student Life Card Content Styles */
+.student-life-card svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--secondary-text-color);
+    margin-bottom: 1rem;
+    transition: transform var(--trans-duration) ease-in-out;
+    pointer-events: none;
+}
+
+.student-life-card:hover svg {
+    transform: scale(1.1);
+}
+
+.student-life-card h3 {
+    color: var(--secondary-text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+}
+
+.student-life-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* Stats Grid Section */
+.stats-grid {
+    position: relative;
+    background: linear-gradient(135deg, rgba(152, 43, 28, 0.1), transparent);
+    clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+    padding: 8rem 0;
+}
+
+.stats-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(152, 43, 28, 0.05) 0,
+        rgba(152, 43, 28, 0.05) 1px,
+        transparent 1px,
+        transparent 10px
+    );
+}
+
+/* overview-section */
+.overview-section {
+    padding: 80px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 60px;
+}
+
+.content {
+    flex: 1;
+}
+
+.overview-label {
+    display: inline-block;
+    border: 1px solid var(--header-bg-color);
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--link-hover-color);
+    margin-bottom: 24px;
+}
+
+h1 {
+    font-size: 48px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 24px !important;
+}
+
+.description {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.features {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.feature {
+    flex: 1;
+}
+
+.feature-icon {
+    background-color: var(--button-bg-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.feature-icon svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+.feature h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.feature p {
+    color: #666;
+    font-size: 14px;
+}
+
+.discover-more {
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.discover-more:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.image-container {
+    flex: 1;
+    position: relative;
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.quote-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--card-bg-color);
+    padding: 24px;
+    max-width: 400px;
+}
+
+.quote-box p {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #666;
+}
+
+.quote-box .author {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0;
+}
+
+.quote-box::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 24px;
+    bottom: 24px;
+    width: 4px;
+    background-color: var(--button-bg-color);
+}
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .image-container {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    .features {
+        flex-direction: column;
+    }
+}
+
+/* Academic Excellence Section */
+.academic-excellence-section {
+    background: var(--secondary-bg-color);
+    width: 100%;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px var(--student-life-shadow);
+}
+
+/* Schools Section Styles */
+.schools-section {
+    background: linear-gradient(to bottom, var(--bg-color), var(--secondary-bg-color));
+    padding: 80px 0;
+  }
+  
+  .schools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .school-card {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .school-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .school-image {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .school-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .school-card:hover .school-image img {
+    transform: scale(1.1);
+  }
+  
+  .school-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .school-card:hover .school-overlay {
+    opacity: 1;
+  }
+  
+  .school-overlay span {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .school-content {
+    padding: 1.5rem;
+  }
+  
+  .school-content h3 {
+    color: var(--secondary-text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .school-content p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  
+  .school-content a {
+    color: var(--secondary-text-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .school-content a:hover {
+    color: var(--button-hover-bg);
+  }
+  
+  @media (max-width: 768px) {
+    .schools-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  
+
+/* Campus Life Section */
+.campus {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+    position: relative;
+    margin-bottom: 120px;
+}
+
+/* Quote Section */
+.quotes {
+    background-color: #800000;
+    color: #f2e8c6;
+    padding: 20px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.quotes q {
+    color: #f2e8c6;
+    display: inline-block;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Campus Grid Layout */
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* Campus Column Styles */
+.campus-col {
+    flex-basis: 32%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    height: 600px;
+}
+
+.campus-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.campus-col:hover img {
+    transform: scale(1.1);
+}
+
+/* Layer Effect for Campus Images */
+.layer {
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: var(--trans-duration);
+}
+
+.layer h3 {
+    width: 100%;
+    font-weight: 500;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    opacity: 0;
+    transition: var(--trans-duration);
+}
+
+.layer:hover h3 {
+    bottom: 48%;
+    opacity: 1;
+}
+
+.layer:hover {
+    background: #80000090;
+}
+
+.campus {
+    background-image: linear-gradient(rgba(128, 0, 0, 0.674), rgba(128, 0, 0, 0.646)), url('img/istockphoto-1201405182-612x612-1.jpg');
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Image Gallery Styles */
+.image-gallery {
+    padding-top: 40px;
+    position: relative;
+}
+
+.image-gallery .grid > div {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-gallery .grid > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #80000010;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.image-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--trans-duration) ease;
+}
+
+.image-gallery .grid > div:hover img {
+    transform: scale(1.1);
+}
+
+.image-gallery .grid > div > div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.image-gallery .grid > div > div h3 {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.image-gallery .grid > div > div p {
+    color: white;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(45deg, var(--secondary-text-color), var(--button-bg-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Card Hover Effects */
+.card-hover-effect {
+    transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Animated Underline Effect */
+.animated-underline {
+    position: relative;
+}
+
+.animated-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--secondary-text-color);
+    transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+    width: 100%;
+}
+
+/* Campus Section Decorative Separator */
+.campus::after {
+    content: '';
+    position: absolute;
+    bottom: -90px;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 99vw;
+    height: 60px;
+    background: 
+        linear-gradient(45deg, var(--secondary-text-color) 25%, transparent 25%) -30px 0,
+        linear-gradient(-45deg, var(--secondary-text-color) 25%, transparent 25%) -30px 0,
+        linear-gradient(45deg, transparent 75%, var(--secondary-text-color) 75%) -30px 0,
+        linear-gradient(-45deg, transparent 75%, var(--secondary-text-color) 75%) -30px 0;
+    background-size: 60px 60px;
+    background-color: var(--bg-color);
+    opacity: 0.1;
+    transform: scaleY(0.5);
+}
+
+/* Down Arrow Animation */
+.fa-chevron-down {
+    cursor: pointer;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .schools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Typography Adjustments */
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    /* Grid Layouts */
+    .schools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hexagon-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Section Adjustments */
+    .schools-section {
+        transform: none;
+        padding: 4rem 0;
+    }
+
+    .schools-section > * {
+        transform: none;
+    }
+
+    .hero-section {
+        padding: 4rem 0;
+    }
+
+    /* Card Adjustments */
+    .school-card {
+        height: auto;
+        min-height: 450px;
+    }
+
+    /* Campus Section */
+    .campus {
+        width: 90%;
+    }
+    
+    .campus-col {
+        flex-basis: 100%;
+        height: 450px;
+    }
+}
+
+/* Button Primary Style */
+.btn-primary {
+    background: linear-gradient(to right, var(--button-bg-color), var(--button-hover-bg));
+    color: var(--button-text-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    transition: all var(--trans-duration) ease-in-out;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(128, 0, 0, 0.2);
+    background-size: 200% auto;
+    background-position: 0% 0%;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Button Primary Decorative Elements */
+.btn-primary::before,
+.btn-primary::after {
+    content: '';
+    height: 2px;
+    width: 50px;
+    background: var(--button-bg-color);
+    transition: all var(--trans-duration) ease-in-out;
+}
+
+.btn-primary:hover::before,
+.btn-primary:hover::after {
+    width: 70px;
+    background: var(--button-hover-bg);
+}
+
+.btn-primary:hover {
+    background-position: 100% 0%;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(128, 0, 0, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(128, 0, 0, 0.2);
+}
+
+/* Typography Adjustments */
+.hero-section p {
+    font-size: 1.2rem;
+    line-height: 1.75;
+}
+
+section p,
+.student-life-card p,
+.achievements-section p,
+.stat-card p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Custom Animations */
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+}
+
+.card-float {
+    animation: cardFloat 6s ease-in-out infinite;
+}
+
+/* Section Styles */
+.diagonal-section {
+    position: relative;
+    background: linear-gradient(135deg, var(--header-bg-color) 0%, var(--button-hover-bg) 100%);
+    transform: skewY(-3deg);
+    padding: 6rem 0;
+}
+
+.diagonal-section > * {
+    transform: skewY(3deg);
+}
+
+.floating-card {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Utility Classes */
+.gradient-border {
+    position: relative;
+    background: linear-gradient(60deg, var(--secondary-text-color) 0%, var(--button-bg-color) 100%);
+    padding: 2px;
+}
+
+.gradient-border > * {
+    background: var(--bg-color);
+    height: 100%;
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.slide-in {
+    animation: slideIn 1s ease-out forwards;
+}
